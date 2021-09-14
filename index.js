@@ -26,5 +26,17 @@ $form.addEventListener('submit', (event) => {
     title,
     body,
   };
-  console.log(data);
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(data),
+  };
+
+  fetch('https://apis.scrimba.com/jsonplaceholder/posts', options)
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.log(error.message));
 });
