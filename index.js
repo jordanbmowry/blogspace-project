@@ -1,3 +1,5 @@
+const $form = document.querySelector('form');
+
 fetch('https://apis.scrimba.com/jsonplaceholder/posts')
   .then((response) => response.json())
   .then((data) => {
@@ -12,3 +14,17 @@ fetch('https://apis.scrimba.com/jsonplaceholder/posts')
     });
     document.getElementById('blog-list').innerHTML = html;
   });
+
+$form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  console.log('hi');
+  const formData = new FormData($form);
+
+  const title = formData.get('title');
+  const body = formData.get('body');
+  const data = {
+    title,
+    body,
+  };
+  console.log(data);
+});
