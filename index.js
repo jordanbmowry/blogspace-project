@@ -1,4 +1,5 @@
 const $form = document.querySelector('form');
+const $blogList = document.getElementById('blog-list');
 
 fetch('https://apis.scrimba.com/jsonplaceholder/posts')
   .then((response) => response.json())
@@ -7,12 +8,14 @@ fetch('https://apis.scrimba.com/jsonplaceholder/posts')
     let html = '';
     firstFivePosts.forEach((post) => {
       html += `
-        <h3>${post.title}</h3>
-        <p>${post.body}</p>
-        <hr>
+        <div class='post'>
+            <h3>${post.title}</h3>
+            <p>${post.body}</p>
+            <hr>
+        </div>
         `;
     });
-    document.getElementById('blog-list').innerHTML = html;
+    $blogList.innerHTML = html;
   });
 
 $form.addEventListener('submit', (event) => {
@@ -39,4 +42,13 @@ $form.addEventListener('submit', (event) => {
     .then((res) => res.json())
     .then((data) => console.log(data))
     .catch((error) => console.log(error.message));
+
+  const $newPost = document.createElement('div');
+  $newPost.classList.add('post');
+  $newPost.innerHTML = `
+  <h3>${title}</h3>
+  <p>${body}</p>
+  <hr>
+  `;
+  $blogList.prepend($newPost);
 });
