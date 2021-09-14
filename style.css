@@ -17,3 +17,24 @@ nav {
   position: fixed;
   width: 100%;
 }
+
+form {
+  padding: 100px 10px 10px;
+  display: grid;
+  background-color: rgb(230, 230, 230);
+}
+
+form > label {
+  margin: 10px 0;
+}
+
+form button {
+  margin-top: 15px;
+  padding: 10px 25px;
+  cursor: pointer;
+  align-self: center;
+  background-color: royalblue;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
