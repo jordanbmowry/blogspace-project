@@ -1,21 +1,26 @@
 const $form = document.querySelector('form');
 const $blogList = document.getElementById('blog-list');
+let postsArray = [];
 
-fetch('https://apis.scrimba.com/jsonplaceholder/posts')
-  .then((response) => response.json())
-  .then((data) => {
-    const firstFivePosts = data.slice(0, 5);
-    let html = '';
-    firstFivePosts.forEach((post) => {
-      html += `
+function renderPosts(posts) {
+  let html = '';
+  posts.forEach((post) => {
+    html += `
         <div class='post'>
             <h3>${post.title}</h3>
             <p>${post.body}</p>
             <hr>
         </div>
         `;
-    });
-    $blogList.innerHTML = html;
+  });
+  $blogList.innerHTML = html;
+}
+
+fetch('https://apis.scrimba.com/jsonplaceholder/posts')
+  .then((response) => response.json())
+  .then((data) => {
+    postsArray = data.slice(0, 5);
+    renderPosts(postsArray);
   });
 
 $form.addEventListener('submit', (event) => {
@@ -43,12 +48,6 @@ $form.addEventListener('submit', (event) => {
     .then((data) => console.log(data))
     .catch((error) => console.log(error.message));
 
-  const $newPost = document.createElement('div');
-  $newPost.classList.add('post');
-  $newPost.innerHTML = `
-  <h3>${title}</h3>
-  <p>${body}</p>
-  <hr>
-  `;
-  $blogList.prepend($newPost);
+  postsArray = [data, ...postsArray];
+  renderPosts(postsArray);
 });
