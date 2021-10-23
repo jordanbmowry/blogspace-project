@@ -1,5 +1,7 @@
 # Blogspace Project
 
+This project is from Scrima and is a part of the The Frontend Developer Career Path.
+
 ## Supporting Scrimba
 
 Since 2017, we have created over 20 free courses on Scrimba, and we're going to
